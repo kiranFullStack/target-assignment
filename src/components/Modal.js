@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function SimpleModal() {
+export default function SimpleModal({ setNewProductObject }) {
   const classes = useStyles()
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle)
@@ -47,7 +47,7 @@ export default function SimpleModal() {
   }
 
   const handleSubmit = e => {
-    console.log({
+    setNewProductObject({
       productName,
       productDescription,
       isActive,
@@ -58,6 +58,7 @@ export default function SimpleModal() {
       createdAt: new Date(),
       updatedAt: new Date()
     })
+
     e.preventDefault()
   }
 
