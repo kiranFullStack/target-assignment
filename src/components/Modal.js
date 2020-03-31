@@ -30,7 +30,13 @@ export default function SimpleModal() {
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle)
   const [open, setOpen] = React.useState(false)
-  const [product, setProduct] = React.useState("")
+  const [productName, setProductName] = React.useState(null)
+  const [productDescription, setProductDescription] = React.useState(null)
+  const [isActive, setIsActive] = React.useState(null)
+  const [price, setPrice] = React.useState(0)
+  const [offerPrice, setOfferPrice] = React.useState(0)
+  const [offerStartAt, setOfferStartAt] = React.useState(null)
+  const [offerEndAt, setOfferEndAt] = React.useState(null)
 
   const handleOpen = () => {
     setOpen(true)
@@ -41,7 +47,17 @@ export default function SimpleModal() {
   }
 
   const handleSubmit = e => {
-    console.log(product)
+    console.log({
+      productName,
+      productDescription,
+      isActive,
+      price: parseInt(price),
+      offerPrice: parseInt(offerPrice),
+      offerStartAt,
+      offerEndAt,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
     e.preventDefault()
   }
 
@@ -49,12 +65,78 @@ export default function SimpleModal() {
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Add your products</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={e => {
-            setProduct(e.target.value)
-          }}
-        />
+        <div>
+          <label>Product Name</label>
+          <input
+            type="text"
+            onChange={e => {
+              setProductName(e.target.value)
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Product Description</label>
+          <input
+            type="text"
+            onChange={e => {
+              setProductDescription(e.target.value)
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Is Active?</label>
+          <input
+            type="checkbox"
+            onChange={e => {
+              setIsActive(!isActive)
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Price</label>
+          <input
+            type="number"
+            min="0"
+            onChange={e => {
+              setPrice(e.target.value)
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Offer Price</label>
+          <input
+            type="number"
+            min="0"
+            onChange={e => {
+              setOfferPrice(e.target.value)
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Offer Start At</label>
+          <input
+            type="datetime-local"
+            onChange={e => {
+              setOfferStartAt(e.target.value)
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Offer End At</label>
+          <input
+            type="datetime-local"
+            onChange={e => {
+              setOfferEndAt(e.target.value)
+            }}
+          />
+        </div>
+
         <input type="submit" value="Add Product" />
       </form>
     </div>

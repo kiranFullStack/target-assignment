@@ -27,7 +27,7 @@ const rows = [
   createData("Cupcake", 305, 3.7, 67, 4.3),
   createData("Donut", 452, 25.0, 51, 4.9),
   createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+  createData("Frozen yoghurt", "Description", 6.0, 24, 4.0),
   createData("Gingerbread", 356, 16.0, 49, 3.9),
   createData("Honeycomb", 408, 3.2, 87, 6.5),
   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
@@ -70,12 +70,17 @@ const headCells = [
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)"
+    label: "Name"
   },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" }
+  {
+    id: "calories",
+    numeric: false,
+    disablePadding: false,
+    label: "Description"
+  },
+  { id: "fat", numeric: false, disablePadding: false, label: "Is Active" },
+  { id: "carbs", numeric: false, disablePadding: false, label: "Price" },
+  { id: "protein", numeric: false, disablePadding: false, label: "Offer Price" }
 ]
 
 function EnhancedTableHead(props) {
@@ -341,10 +346,10 @@ export default function EnhancedTable() {
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="left">{row.calories}</TableCell>
+                      <TableCell align="left">{row.fat}</TableCell>
+                      <TableCell align="left">{row.carbs}</TableCell>
+                      <TableCell align="left">{row.protein}</TableCell>
                     </TableRow>
                   )
                 })}
