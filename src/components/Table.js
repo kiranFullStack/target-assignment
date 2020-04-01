@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import clsx from "clsx"
 import { lighten, makeStyles } from "@material-ui/core/styles"
@@ -100,7 +100,8 @@ function EnhancedTableHead(props) {
     orderBy,
     numSelected,
     rowCount,
-    onRequestSort
+    onRequestSort,
+    setDeletedItems
   } = props
   const createSortHandler = property => event => {
     onRequestSort(event, property)
@@ -173,14 +174,16 @@ const useToolbarStyles = makeStyles(theme => ({
   }
 }))
 
-const printdeletearray = selectedId => {
-  console.log(selectedId)
-  // debugger;
-}
+// const printdeletearray = (selectedId, setDeletedItems) => {
+//   //   console.log(selectedId, "This is the array of deleted items")
+
+//   setDeletedItems("Hello")
+//   // debugger;
+// }
 
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles()
-  const { numSelected, selectedId } = props
+  const { numSelected, selectedId, setDeletedItems } = props
 
   return (
     <Toolbar
@@ -210,12 +213,13 @@ const EnhancedTableToolbar = props => {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon
-              onClick={() => {
-                printdeletearray(selectedId)
-              }}
-            />
+          <IconButton
+            aria-label="delete"
+            onClick={() => {
+              setDeletedItems(selectedId)
+            }}
+          >
+            <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
@@ -257,13 +261,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function EnhancedTable({ rows }) {
+export default function EnhancedTable({ rows, setDeletedItems }) {
   const classes = useStyles()
-  const [order, setOrder] = React.useState("asc")
-  const [orderBy, setOrderBy] = React.useState("productDescription")
-  const [selected, setSelected] = React.useState([])
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [order, setOrder] = useState("asc")
+  const [orderBy, setOrderBy] = useState("productDescription")
+  const [selected, setSelected] = useState([])
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc"
@@ -320,6 +324,7 @@ export default function EnhancedTable({ rows }) {
         <EnhancedTableToolbar
           numSelected={selected.length}
           selectedId={selected}
+          setDeletedItems={setDeletedItems}
         />
         <TableContainer>
           <Table
@@ -336,6 +341,7 @@ export default function EnhancedTable({ rows }) {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+              setDeletedItems={setDeletedItems}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))

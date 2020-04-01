@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Modal from "@material-ui/core/Modal"
 import Button from "@material-ui/core/Button"
@@ -28,15 +28,15 @@ const useStyles = makeStyles(theme => ({
 export default function SimpleModal({ setNewProductObject }) {
   const classes = useStyles()
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle)
-  const [open, setOpen] = React.useState(false)
-  const [productName, setProductName] = React.useState(null)
-  const [productDescription, setProductDescription] = React.useState(null)
-  const [isActive, setIsActive] = React.useState(null)
-  const [price, setPrice] = React.useState(0)
-  const [offerPrice, setOfferPrice] = React.useState(0)
-  const [offerStartAt, setOfferStartAt] = React.useState(null)
-  const [offerEndAt, setOfferEndAt] = React.useState(null)
+  const [modalStyle] = useState(getModalStyle)
+  const [open, setOpen] = useState(false)
+  const [productName, setProductName] = useState(null)
+  const [productDescription, setProductDescription] = useState(null)
+  const [isActive, setIsActive] = useState(null)
+  const [price, setPrice] = useState(0)
+  const [offerPrice, setOfferPrice] = useState(0)
+  const [offerStartAt, setOfferStartAt] = useState(null)
+  const [offerEndAt, setOfferEndAt] = useState(null)
 
   const handleOpen = () => {
     setOpen(true)

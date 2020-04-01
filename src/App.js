@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import "./App.scss"
 import Table from "./components/Table"
 import SimpleModal from "./components/Modal"
 
 function App() {
-  const [NewProductObject, setNewProductObject] = React.useState({})
-  const [rows, setRows] = React.useState([
+  const [NewProductObject, setNewProductObject] = useState({})
+  const [deletedItems, setDeletedItems] = useState("hi")
+  const [rows, setRows] = useState([
     {
       productName: "Cupcake",
       productDescription: "This is the description",
@@ -63,17 +64,21 @@ function App() {
     }
   ])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (Object.keys(NewProductObject).length !== 0) {
       setRows([...rows, NewProductObject])
     }
   }, [NewProductObject])
 
+  console.log(deletedItems, "This is coming from App.js.....FUCK YEAH!!!")
+
+  // console.log(deletedItems, "getting the deleted items from App.js")
+
   return (
     <div className="container">
       <h1>Target CRUD assignment</h1>
       <SimpleModal setNewProductObject={setNewProductObject} />
-      <Table rows={rows} />
+      <Table rows={rows} setDeletedItems={setDeletedItems} />
     </div>
   )
 }
