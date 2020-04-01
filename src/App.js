@@ -3,12 +3,6 @@ import "./App.scss"
 import SimpleModal from "./components/Modal"
 import MUIDataTable from "mui-datatables"
 
-// offerPrice: 9,
-// offerStartAt: 90,
-// offerEndAt: 90,
-// createdAt: 80,
-// updatedAt: 80
-
 function App() {
   const [NewProductObject, setNewProductObject] = useState({})
   const [data, setData] = useState([
@@ -80,7 +74,7 @@ function App() {
     },
     {
       name: "productDescription",
-      label: "Company",
+      label: "Description",
       options: {
         filter: true,
         sort: true
@@ -88,7 +82,7 @@ function App() {
     },
     {
       name: "isActive",
-      label: "City",
+      label: "Active",
       options: {
         filter: true,
         sort: true
@@ -96,13 +90,59 @@ function App() {
     },
     {
       name: "price",
-      label: "State",
+      label: "Price",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+
+    {
+      name: "offerPrice",
+      label: "Offer Price",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "offerStartAt",
+      label: "Offer Start At",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "offerEndAt",
+      label: "Offer End At",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "createdAt",
+      label: "Created at",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "updatedAt",
+      label: "Updated At",
       options: {
         filter: true,
         sort: true
       }
     }
   ]
+  // : 9,
+  // : 90,
+  // : 90,
+  // : 80,
+  // : 80
 
   useEffect(() => {
     console.log(NewProductObject, ";;")
@@ -112,7 +152,8 @@ function App() {
   }, [NewProductObject])
 
   const options = {
-    filterType: "checkbox"
+    filterType: "dropdown",
+    responsive: "scroll"
   }
 
   return (
