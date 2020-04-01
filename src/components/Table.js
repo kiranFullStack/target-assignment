@@ -47,7 +47,7 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: "name",
+    id: "productName",
     numeric: false,
     disablePadding: true,
     label: "Name"
@@ -235,19 +235,19 @@ export default function EnhancedTable({ rows }) {
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
-      const newSelecteds = rows.map(n => n.name)
+      const newSelecteds = rows.map(n => n.productName)
       setSelected(newSelecteds)
       return
     }
     setSelected([])
   }
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name)
+  const handleClick = (event, productName) => {
+    const selectedIndex = selected.indexOf(productName)
     let newSelected = []
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name)
+      newSelected = newSelected.concat(selected, productName)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1))
     } else if (selectedIndex === selected.length - 1) {
@@ -271,7 +271,7 @@ export default function EnhancedTable({ rows }) {
     setPage(0)
   }
 
-  const isSelected = name => selected.indexOf(name) !== -1
+  const isSelected = productName => selected.indexOf(productName) !== -1
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
@@ -299,17 +299,17 @@ export default function EnhancedTable({ rows }) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name)
+                  const isItemSelected = isSelected(row.productName)
                   const labelId = `enhanced-table-checkbox-${index}`
 
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row.name)}
+                      onClick={event => handleClick(event, row.productName)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.productName}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -324,7 +324,7 @@ export default function EnhancedTable({ rows }) {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.productName}
                       </TableCell>
                       <TableCell align="left">{row.calories}</TableCell>
                       <TableCell align="left">{row.fat}</TableCell>
