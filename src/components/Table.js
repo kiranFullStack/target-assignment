@@ -173,9 +173,14 @@ const useToolbarStyles = makeStyles(theme => ({
   }
 }))
 
+const printdeletearray = selectedId => {
+  console.log(selectedId)
+  // debugger;
+}
+
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles()
-  const { numSelected } = props
+  const { numSelected, selectedId } = props
 
   return (
     <Toolbar
@@ -199,14 +204,18 @@ const EnhancedTableToolbar = props => {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          Products Table
         </Typography>
       )}
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton aria-label="delete">
-            <DeleteIcon />
+            <DeleteIcon
+              onClick={() => {
+                printdeletearray(selectedId)
+              }}
+            />
           </IconButton>
         </Tooltip>
       ) : (
@@ -308,7 +317,10 @@ export default function EnhancedTable({ rows }) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          selectedId={selected}
+        />
         <TableContainer>
           <Table
             className={classes.table}
@@ -317,6 +329,7 @@ export default function EnhancedTable({ rows }) {
           >
             <EnhancedTableHead
               classes={classes}
+              selectedId={selected.id}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
