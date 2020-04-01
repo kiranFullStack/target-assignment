@@ -10,41 +10,8 @@ import MUIDataTable from "mui-datatables"
 // updatedAt: 80
 
 function App() {
-  const columns = [
-    {
-      name: "productName",
-      label: "Name",
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      name: "productDescription",
-      label: "Company",
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      name: "isActive",
-      label: "City",
-      options: {
-        filter: true,
-        sort: true
-      }
-    },
-    {
-      name: "price",
-      label: "State",
-      options: {
-        filter: true,
-        sort: true
-      }
-    }
-  ]
-  const data = [
+  const [NewProductObject, setNewProductObject] = useState({})
+  const [data, setData] = useState([
     {
       productName: "Cupcake",
       productDescription: "This is the description",
@@ -100,24 +67,65 @@ function App() {
       createdAt: 80,
       updatedAt: 80
     }
+  ])
+
+  const columns = [
+    {
+      name: "productName",
+      label: "Name",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "productDescription",
+      label: "Company",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "isActive",
+      label: "City",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "price",
+      label: "State",
+      options: {
+        filter: true,
+        sort: true
+      }
+    }
   ]
+
+  useEffect(() => {
+    console.log(NewProductObject, ";;")
+    if (Object.keys(NewProductObject).length !== 0) {
+      setData([NewProductObject, ...data])
+    }
+  }, [NewProductObject])
 
   const options = {
     filterType: "checkbox"
   }
 
-  const [NewProductObject, setNewProductObject] = useState({})
-
   return (
     <div className="container">
       <h1>Target CRUD assignment</h1>
+      <SimpleModal setNewProductObject={setNewProductObject} />
+
       <MUIDataTable
         title={"Target Product List"}
         data={data}
         columns={columns}
         options={options}
       />
-      <SimpleModal setNewProductObject={setNewProductObject} />
     </div>
   )
 }
