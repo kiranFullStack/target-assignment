@@ -112,7 +112,7 @@ function App() {
     <div className="container">
       <h1>Target CRUD assignment</h1>
       <MUIDataTable
-        title={"Employee List"}
+        title={"Target Product List"}
         data={data}
         columns={columns}
         options={options}
