@@ -46,6 +46,8 @@ export default function SimpleModal({ setNewProductObject }) {
     setOpen(false)
   }
 
+  let time = new Date()
+
   const handleSubmit = e => {
     setNewProductObject({
       productName,
@@ -55,8 +57,8 @@ export default function SimpleModal({ setNewProductObject }) {
       offerPrice: parseInt(offerPrice),
       offerStartAt,
       offerEndAt,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      createdAt: time.getTime().toString(),
+      updatedAt: time.getTime().toString()
     })
 
     e.preventDefault()

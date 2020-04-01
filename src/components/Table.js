@@ -53,14 +53,43 @@ const headCells = [
     label: "Name"
   },
   {
-    id: "calories",
+    id: "productDescription",
     numeric: false,
     disablePadding: false,
     label: "Description"
   },
-  { id: "fat", numeric: false, disablePadding: false, label: "Is Active" },
-  { id: "carbs", numeric: false, disablePadding: false, label: "Price" },
-  { id: "protein", numeric: false, disablePadding: false, label: "Offer Price" }
+  { id: "isActive", numeric: false, disablePadding: false, label: "Is Active" },
+  { id: "price", numeric: false, disablePadding: false, label: "Price" },
+  {
+    id: "offerPrice",
+    numeric: false,
+    disablePadding: false,
+    label: "Offer Price"
+  },
+  {
+    id: "offerStartAt",
+    numeric: false,
+    disablePadding: false,
+    label: "Offer Start At"
+  },
+  {
+    id: "offerEndAt",
+    numeric: false,
+    disablePadding: false,
+    label: "Offer End At"
+  },
+  {
+    id: "createdAt",
+    numeric: false,
+    disablePadding: false,
+    label: "Created At"
+  },
+  {
+    id: "updatedAt",
+    numeric: false,
+    disablePadding: false,
+    label: "Updated At"
+  }
 ]
 
 function EnhancedTableHead(props) {
@@ -222,7 +251,7 @@ const useStyles = makeStyles(theme => ({
 export default function EnhancedTable({ rows }) {
   const classes = useStyles()
   const [order, setOrder] = React.useState("asc")
-  const [orderBy, setOrderBy] = React.useState("calories")
+  const [orderBy, setOrderBy] = React.useState("productDescription")
   const [selected, setSelected] = React.useState([])
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -326,10 +355,18 @@ export default function EnhancedTable({ rows }) {
                       >
                         {row.productName}
                       </TableCell>
-                      <TableCell align="left">{row.calories}</TableCell>
-                      <TableCell align="left">{row.fat}</TableCell>
-                      <TableCell align="left">{row.carbs}</TableCell>
-                      <TableCell align="left">{row.protein}</TableCell>
+                      <TableCell align="left">
+                        {row.productDescription}
+                      </TableCell>
+                      <TableCell align="left">
+                        {row.isActive ? "✅" : "❌"}
+                      </TableCell>
+                      <TableCell align="left">{row.price}</TableCell>
+                      <TableCell align="left">{row.offerPrice}</TableCell>
+                      <TableCell align="left">{row.offerStartAt}</TableCell>
+                      <TableCell align="left">{row.offerEndAt}</TableCell>
+                      <TableCell align="left">{row.createdAt}</TableCell>
+                      <TableCell align="left">{row.updatedAt}</TableCell>
                     </TableRow>
                   )
                 })}
