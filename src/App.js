@@ -1,12 +1,50 @@
 import React, { useState, useEffect } from "react"
 import "./App.scss"
-import Table from "./components/Table"
 import SimpleModal from "./components/Modal"
+import MUIDataTable from "mui-datatables"
+
+// offerPrice: 9,
+// offerStartAt: 90,
+// offerEndAt: 90,
+// createdAt: 80,
+// updatedAt: 80
 
 function App() {
-  const [NewProductObject, setNewProductObject] = useState({})
-  const [deletedItems, setDeletedItems] = useState([])
-  const [rows, setRows] = useState([
+  const columns = [
+    {
+      name: "productName",
+      label: "Name",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "productDescription",
+      label: "Company",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "isActive",
+      label: "City",
+      options: {
+        filter: true,
+        sort: true
+      }
+    },
+    {
+      name: "price",
+      label: "State",
+      options: {
+        filter: true,
+        sort: true
+      }
+    }
+  ]
+  const data = [
     {
       productName: "Cupcake",
       productDescription: "This is the description",
@@ -62,45 +100,24 @@ function App() {
       createdAt: 80,
       updatedAt: 80
     }
-  ])
+  ]
 
-  useEffect(() => {
-    if (Object.keys(NewProductObject).length !== 0) {
-      setRows([...rows, NewProductObject])
-    }
-  }, [NewProductObject])
+  const options = {
+    filterType: "checkbox"
+  }
 
-  useEffect(() => {
-    console.log(
-      deletedItems.map(ele => console.log(ele)),
-      "Items will be deleted"
-    )
-    let tempRows = rows
-    for (let i = 0; i < deletedItems.length; i++) {
-      const element = deletedItems[i]
-      console.log(element, "this is the element from for loop")
-      // console.log(rows, "rows")
-
-      let modifiedArray = tempRows.filter(ele => ele.productName !== element)
-      // console.log(modifiedArray)
-      setRows(modifiedArray)
-    }
-  }, [deletedItems])
-
-  console.log(deletedItems, "This is coming from App.js.....FUCK YEAH!!!")
-
-  // for (let i = 0; i < deletedItems.length; i++) {
-  //   const element = deletedItems[i]
-  //   console.log(element, "this is the element from for loop")
-  // }
-
-  // console.log(deletedItems, "getting the deleted items from App.js")
+  const [NewProductObject, setNewProductObject] = useState({})
 
   return (
     <div className="container">
       <h1>Target CRUD assignment</h1>
+      <MUIDataTable
+        title={"Employee List"}
+        data={data}
+        columns={columns}
+        options={options}
+      />
       <SimpleModal setNewProductObject={setNewProductObject} />
-      <Table rows={rows} setDeletedItems={setDeletedItems} />
     </div>
   )
 }
