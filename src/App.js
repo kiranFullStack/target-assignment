@@ -5,7 +5,7 @@ import SimpleModal from "./components/Modal"
 
 function App() {
   const [NewProductObject, setNewProductObject] = useState({})
-  const [deletedItems, setDeletedItems] = useState("hi")
+  const [deletedItems, setDeletedItems] = useState([])
   const [rows, setRows] = useState([
     {
       productName: "Cupcake",
@@ -70,7 +70,29 @@ function App() {
     }
   }, [NewProductObject])
 
+  useEffect(() => {
+    console.log(
+      deletedItems.map(ele => console.log(ele)),
+      "Items will be deleted"
+    )
+    let tempRows = rows
+    for (let i = 0; i < deletedItems.length; i++) {
+      const element = deletedItems[i]
+      console.log(element, "this is the element from for loop")
+      // console.log(rows, "rows")
+
+      let modifiedArray = tempRows.filter(ele => ele.productName !== element)
+      // console.log(modifiedArray)
+      setRows(modifiedArray)
+    }
+  }, [deletedItems])
+
   console.log(deletedItems, "This is coming from App.js.....FUCK YEAH!!!")
+
+  // for (let i = 0; i < deletedItems.length; i++) {
+  //   const element = deletedItems[i]
+  //   console.log(element, "this is the element from for loop")
+  // }
 
   // console.log(deletedItems, "getting the deleted items from App.js")
 
