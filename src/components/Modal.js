@@ -60,6 +60,7 @@ export default function SimpleModal({ setNewProductObject }) {
       createdAt: time.getTime().toString(),
       updatedAt: time.getTime().toString()
     })
+    handleClose()
 
     e.preventDefault()
   }

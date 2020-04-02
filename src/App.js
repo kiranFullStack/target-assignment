@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import "./App.scss"
 import SimpleModal from "./components/Modal"
 import MUIDataTable from "mui-datatables"
+import CustomBodyCell from "./components/CustomBodyCell"
 
 function App() {
   const [NewProductObject, setNewProductObject] = useState({})
@@ -80,14 +81,38 @@ function App() {
         sort: true
       }
     },
+    // {
+    //   name: "isActive",
+    //   label: "Active",
+    //   options: {
+    //     filter: true,
+    //     sort: true
+    //   }
+    // },
+
     {
       name: "isActive",
       label: "Active",
+
       options: {
         filter: true,
+
+        filterOptions: {
+          names: ["Yes", "No"],
+          logic(isActive, filterVal) {
+            console.log(isActive)
+            const show =
+              (filterVal.indexOf("Yes") >= 0 && isActive) ||
+              (filterVal.indexOf("No") >= 0 && !isActive)
+
+            return !show
+          }
+        },
+        customBodyRender: value => <CustomBodyCell value={!value} />,
         sort: true
       }
     },
+
     {
       name: "price",
       label: "Price",
