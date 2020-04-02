@@ -41,7 +41,7 @@ function App() {
 
     {
       name: "price",
-      label: "Price",
+      label: "Price($)",
       options: {
         filter: true,
         sort: true
@@ -50,7 +50,7 @@ function App() {
 
     {
       name: "offerPrice",
-      label: "Offer Price",
+      label: "Offer Price($)",
       options: {
         filter: true,
         sort: true
@@ -128,7 +128,7 @@ function App() {
           >
             <span role="img" aria-label="pointer">
               👉🏼
-            </span>{" "}
+            </span>
             Backend Code
           </a>
           ) (
