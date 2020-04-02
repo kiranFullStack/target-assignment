@@ -1,5 +1,5 @@
 .container {
-  padding: 0 78px;
+  padding: 30px 78px;
 }
 
 .MuiButton-contained {
@@ -10,4 +10,12 @@
   display: flex;
   flex-direction: row-reverse;
   margin-bottom: 34px;
+}
+
+.desc-para {
+  line-height: 1.8;
+}
+
+.footer-info {
+  padding: 50px 78px;
 }

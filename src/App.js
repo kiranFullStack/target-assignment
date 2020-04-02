@@ -116,15 +116,27 @@ function App() {
       <MenuAppBar />
       <div className="container">
         <h2>Description</h2>
-        <p>
-          CRUD Assignment
-          <ul>
-            <li>Listing all products</li>
-            <li>Sorting each feild by cxlicking on header</li>
-            <li>Filtering the feilds dynamically and reset</li>
-            <li>Pagination and Rows per page setting</li>
-            <li>Multiple products delete</li>
-          </ul>
+        <p className="desc-para">
+          CRUD Assignment with Listing all products, Sorting each feild by
+          clicking on header, Filtering the feilds dynamically and reset,
+          Pagination and Rows per page setting, Multiple products select with
+          batch delete and fetching data from mock backend (
+          <a
+            href="https://github.com/kiranFullStack/target-backend"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>👉🏼</span> Backend Code
+          </a>
+          ) (
+          <a
+            href="https://github.com/kiranFullStack/target-assignment"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>👉🏼</span> Frontend Code
+          </a>
+          ) )
         </p>
         <SimpleModal setNewProductObject={setNewProductObject} />
         <MUIDataTable
@@ -134,6 +146,9 @@ function App() {
           options={options}
         />
       </div>
+      <span className="footer-info">
+        Made by Kiran -<a href="www.kiranfullstack.com">kiranfullstack.com</a>
+      </span>
     </>
   )
 }
