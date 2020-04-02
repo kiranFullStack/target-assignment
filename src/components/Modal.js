@@ -68,6 +68,7 @@ export default function SimpleModal({ setNewProductObject }) {
     <div style={modalStyle} className={classes.paper}>
       <h2 className="simple-modal-title">Add your products</h2>
       <form className="form" onSubmit={handleSubmit}>
+        {/* GRID LAYOUT IN ROWS AND COLUMNS FOR THE FORM */}
         <div className="row">
           <label className="column">Product Name</label>
           <input

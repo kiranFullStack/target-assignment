@@ -1,4 +1,6 @@
-@import "./assets/global";
+// IMPORTING SCSS PARTIAL FILES FOR BETTER CSS ARCHITECTURE
+@import "./assets/styles/global";
+@import "./assets/styles/form";
 
 .container {
   padding: 30px 78px;
@@ -22,39 +24,11 @@
   padding: 50px 78px;
 }
 
-// giving any string in class name css advanced
+// DYNAMIC STYLES WHICH TAKE FIRST PART OF CLASSNAME AND ATTACHES IT TO ANY TEXT THAT FOLLOWS
 
 div[class^="makeStyles-paper"],
 div[class*=" makeStyles-paper"] {
   width: 680px;
-}
-
-.form {
-  input {
-    margin: 10px 0;
-    height: 10px;
-    padding: 10px;
-    width: 50%;
-  }
-
-  label {
-    margin-right: 24px;
-    text-align: left;
-    padding: 0.5em 1.5em 0.5em 0;
-  }
-
-  .checkboxCustom {
-    width: 680px !important;
-  }
-
-  .row {
-    display: flex;
-  }
-
-  .column {
-    flex: 50%;
-    padding: 10px;
-  }
 }
 
 .submit-cnt {
