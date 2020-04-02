@@ -1,3 +1,13 @@
 .container {
-  padding: 0 100px;
+  padding: 0 78px;
+}
+
+.MuiButton-contained {
+  background-color: red;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 34px;
 }

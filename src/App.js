@@ -2,67 +2,14 @@ import React, { useState, useEffect } from "react"
 import "./App.scss"
 import SimpleModal from "./components/Modal"
 import MUIDataTable from "mui-datatables"
-import CustomBodyCell from "./components/CustomBodyCell"
+import axios from "axios"
+import MenuAppBar from "./components/MenuAppBar"
+
+// import CustomBodyCell from "./components/CustomBodyCell"
 
 function App() {
   const [NewProductObject, setNewProductObject] = useState({})
-  const [data, setData] = useState([
-    {
-      productName: "Cupcake",
-      productDescription: "This is the description",
-      isActive: true,
-      price: 8,
-      offerPrice: 9,
-      offerStartAt: 90,
-      offerEndAt: 90,
-      createdAt: 80,
-      updatedAt: 80
-    },
-    {
-      productName: "Cupcake2",
-      productDescription: "This is the description",
-      isActive: true,
-      price: 8,
-      offerPrice: 9,
-      offerStartAt: 90,
-      offerEndAt: 90,
-      createdAt: 80,
-      updatedAt: 80
-    },
-    {
-      productName: "Cupcake3",
-      productDescription: "This is the description",
-      isActive: true,
-      price: 8,
-      offerPrice: 9,
-      offerStartAt: 90,
-      offerEndAt: 90,
-      createdAt: 80,
-      updatedAt: 80
-    },
-    {
-      productName: "Cupcake4",
-      productDescription: "This is the description",
-      isActive: true,
-      price: 8,
-      offerPrice: 9,
-      offerStartAt: 90,
-      offerEndAt: 90,
-      createdAt: 80,
-      updatedAt: 80
-    },
-    {
-      productName: "Cupcake5",
-      productDescription: "This is the description",
-      isActive: false,
-      price: 8,
-      offerPrice: 9,
-      offerStartAt: 90,
-      offerEndAt: 90,
-      createdAt: 80,
-      updatedAt: 80
-    }
-  ])
+  const [data, setData] = useState([])
 
   const columns = [
     {
@@ -81,14 +28,6 @@ function App() {
         sort: true
       }
     },
-    // {
-    //   name: "isActive",
-    //   label: "Active",
-    //   options: {
-    //     filter: true,
-    //     sort: true
-    //   }
-    // },
 
     {
       name: "isActive",
@@ -96,19 +35,6 @@ function App() {
 
       options: {
         filter: true,
-
-        filterOptions: {
-          names: ["Yes", "No"],
-          logic(isActive, filterVal) {
-            console.log(isActive)
-            const show =
-              (filterVal.indexOf("Yes") >= 0 && isActive) ||
-              (filterVal.indexOf("No") >= 0 && !isActive)
-
-            return !show
-          }
-        },
-        customBodyRender: value => <CustomBodyCell value={!value} />,
         sort: true
       }
     },
@@ -163,11 +89,15 @@ function App() {
       }
     }
   ]
-  // : 9,
-  // : 90,
-  // : 90,
-  // : 80,
-  // : 80
+
+  useEffect(() => {
+    axios
+      .get(`https://target-backend.herokuapp.com/`, { crossdomain: true })
+      .then(res => {
+        console.log(res.data)
+        setData(res.data)
+      })
+  }, [])
 
   useEffect(() => {
     console.log(NewProductObject, ";;")
@@ -182,17 +112,29 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Target CRUD assignment</h1>
-      <SimpleModal setNewProductObject={setNewProductObject} />
-
-      <MUIDataTable
-        title={"Target Product List"}
-        data={data}
-        columns={columns}
-        options={options}
-      />
-    </div>
+    <>
+      <MenuAppBar />
+      <div className="container">
+        <h2>Description</h2>
+        <p>
+          CRUD Assignment
+          <ul>
+            <li>Listing all products</li>
+            <li>Sorting each feild by cxlicking on header</li>
+            <li>Filtering the feilds dynamically and reset</li>
+            <li>Pagination and Rows per page setting</li>
+            <li>Multiple products delete</li>
+          </ul>
+        </p>
+        <SimpleModal setNewProductObject={setNewProductObject} />
+        <MUIDataTable
+          title={"Target Product List"}
+          data={data}
+          columns={columns}
+          options={options}
+        />
+      </div>
+    </>
   )
 }
 
