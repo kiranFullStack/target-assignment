@@ -5,11 +5,13 @@ import MUIDataTable from "mui-datatables"
 import axios from "axios"
 import MenuAppBar from "./components/MenuAppBar"
 
-// import CustomBodyCell from "./components/CustomBodyCell"
-
 function App() {
   const [NewProductObject, setNewProductObject] = useState({})
   const [data, setData] = useState([])
+
+  //
+  // ─── COLUMNS FOR THE TABLE HEADER ───────────────────────────────────────────────
+  //
 
   const columns = [
     {
@@ -90,6 +92,10 @@ function App() {
     }
   ]
 
+  //
+  // ─── USEEFFECT TO FETCH DATA FROM THE BACKEND WITH AXIOS AND SETTING TO LOCAL STATE IN DATA
+  //
+
   useEffect(() => {
     axios
       .get(`https://target-backend.herokuapp.com/`, { crossdomain: true })
@@ -98,6 +104,10 @@ function App() {
         setData(res.data)
       })
   }, [])
+
+  //
+  // ─── USEEFFECT TO ADD A NEW PRODUCT OBJECT FROM THE MODAL INTO THE TABLE DATA AT THE TOP
+  //
 
   useEffect(() => {
     console.log(NewProductObject, ";;")
@@ -115,6 +125,8 @@ function App() {
     <>
       <MenuAppBar />
       <div className="container">
+        {/* Feature Description of the app with relevant links for code */}
+
         <p className="desc-para">
           CRUD Assignment with Listing all products, Sorting each feild by
           clicking on header, Filtering the feilds dynamically and reset,
@@ -144,6 +156,8 @@ function App() {
           </a>
           ) )
         </p>
+
+        {/* Modal to add products */}
         <SimpleModal setNewProductObject={setNewProductObject} />
         <MUIDataTable
           title={"Target Product List"}
@@ -152,6 +166,8 @@ function App() {
           options={options}
         />
       </div>
+
+      {/* Footer */}
       <span className="footer-info">
         Made by Kiran - <a href="www.kiranfullstack.com">kiranfullstack.com</a>
       </span>

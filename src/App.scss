@@ -19,3 +19,25 @@
 .footer-info {
   padding: 50px 78px;
 }
+
+.form {
+  input {
+    margin: 10px 0;
+    height: 10px;
+    padding: 10px;
+  }
+
+  label {
+    margin-right: 24px;
+  }
+}
+
+.submit-cnt {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.simple-modal-title {
+  text-align: center;
+}
