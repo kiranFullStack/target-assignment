@@ -126,7 +126,10 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>👉🏼</span> Backend Code
+            <span role="img" aria-label="pointer">
+              👉🏼
+            </span>{" "}
+            Backend Code
           </a>
           ) (
           <a
@@ -134,7 +137,10 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>👉🏼</span> Frontend Code
+            <span role="img" aria-label="pointer">
+              👉🏼
+            </span>{" "}
+            Frontend Code
           </a>
           ) )
         </p>
