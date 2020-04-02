@@ -47,8 +47,6 @@ export default function SimpleModal({ setNewProductObject }) {
     setOpen(false)
   }
 
-  let time = new Date()
-
   const handleSubmit = e => {
     setNewProductObject({
       productName,
@@ -58,8 +56,8 @@ export default function SimpleModal({ setNewProductObject }) {
       offerPrice: parseInt(offerPrice),
       offerStartAt,
       offerEndAt,
-      createdAt: time.getTime().toString(),
-      updatedAt: time.getTime().toString()
+      createdAt: new Date().toString(),
+      updatedAt: new Date().toString()
     })
     handleClose()
 
@@ -68,11 +66,12 @@ export default function SimpleModal({ setNewProductObject }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Add your products</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="simple-modal-title">Add your products</h2>
+      <form className="form" onSubmit={handleSubmit}>
         <div>
           <label>Product Name</label>
           <input
+            required
             type="text"
             onChange={e => {
               setProductName(e.target.value)
@@ -83,6 +82,7 @@ export default function SimpleModal({ setNewProductObject }) {
         <div>
           <label>Product Description</label>
           <input
+            required
             type="text"
             onChange={e => {
               setProductDescription(e.target.value)
@@ -93,6 +93,7 @@ export default function SimpleModal({ setNewProductObject }) {
         <div>
           <label>Is Active?</label>
           <input
+            required
             type="checkbox"
             onChange={e => {
               setIsActive(!isActive)
@@ -103,6 +104,7 @@ export default function SimpleModal({ setNewProductObject }) {
         <div>
           <label>Price</label>
           <input
+            required
             type="number"
             min="0"
             onChange={e => {
@@ -114,6 +116,7 @@ export default function SimpleModal({ setNewProductObject }) {
         <div>
           <label>Offer Price</label>
           <input
+            required
             type="number"
             min="0"
             onChange={e => {
@@ -125,6 +128,7 @@ export default function SimpleModal({ setNewProductObject }) {
         <div>
           <label>Offer Start At</label>
           <input
+            required
             type="datetime-local"
             onChange={e => {
               setOfferStartAt(e.target.value)
@@ -135,14 +139,18 @@ export default function SimpleModal({ setNewProductObject }) {
         <div>
           <label>Offer End At</label>
           <input
+            required
             type="datetime-local"
             onChange={e => {
               setOfferEndAt(e.target.value)
             }}
           />
         </div>
-
-        <input type="submit" value="Add Product" />
+        <div className="submit-cnt">
+          <Button type="submit" color="primary" variant="contained">
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   )
