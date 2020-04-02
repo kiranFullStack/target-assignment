@@ -68,9 +68,11 @@ export default function SimpleModal({ setNewProductObject }) {
     <div style={modalStyle} className={classes.paper}>
       <h2 className="simple-modal-title">Add your products</h2>
       <form className="form" onSubmit={handleSubmit}>
-        <div>
-          <label>Product Name</label>
+        <div className="row"></div>
+        <div className="row">
+          <label className="column">Product Name</label>
           <input
+            className="column"
             required
             type="text"
             onChange={e => {
@@ -79,9 +81,10 @@ export default function SimpleModal({ setNewProductObject }) {
           />
         </div>
 
-        <div>
-          <label>Product Description</label>
+        <div className="row">
+          <label className="column">Product Description</label>
           <input
+            className="column"
             required
             type="text"
             onChange={e => {
@@ -90,9 +93,10 @@ export default function SimpleModal({ setNewProductObject }) {
           />
         </div>
 
-        <div>
-          <label>Is Active?</label>
+        <div className="row">
+          <label className="column">Is Active?</label>
           <input
+            className="column"
             required
             type="checkbox"
             onChange={e => {
@@ -101,9 +105,10 @@ export default function SimpleModal({ setNewProductObject }) {
           />
         </div>
 
-        <div>
-          <label>Price</label>
+        <div className="row">
+          <label className="column">Price</label>
           <input
+            className="column"
             required
             type="number"
             min="0"
@@ -113,9 +118,10 @@ export default function SimpleModal({ setNewProductObject }) {
           />
         </div>
 
-        <div>
-          <label>Offer Price</label>
+        <div className="row">
+          <label className="column">Offer Price</label>
           <input
+            className="column"
             required
             type="number"
             min="0"
@@ -125,9 +131,10 @@ export default function SimpleModal({ setNewProductObject }) {
           />
         </div>
 
-        <div>
-          <label>Offer Start At</label>
+        <div className="row">
+          <label className="column">Offer Start At</label>
           <input
+            className="column"
             required
             type="datetime-local"
             onChange={e => {
@@ -136,9 +143,10 @@ export default function SimpleModal({ setNewProductObject }) {
           />
         </div>
 
-        <div>
-          <label>Offer End At</label>
+        <div className="row">
+          <label className="column">Offer End At</label>
           <input
+            className="column"
             required
             type="datetime-local"
             onChange={e => {
