@@ -32,7 +32,8 @@ export default function MenuAppBar() {
             color="inherit"
             aria-label="menu"
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <h1>logo</h1>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Target CRUD Assignment by Kiran
