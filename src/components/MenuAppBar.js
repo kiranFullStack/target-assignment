@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
+import logo from "../assets/logo.png"
 import github from "../assets/github.svg"
 
 const useStyles = makeStyles(theme => ({
@@ -32,7 +32,8 @@ export default function MenuAppBar() {
             color="inherit"
             aria-label="menu"
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <img style={{ height: "30px" }} src={logo} alt="" />{" "}
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Target CRUD Assignment by Kiran

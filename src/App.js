@@ -4,6 +4,14 @@ import SimpleModal from "./components/Modal"
 import MUIDataTable from "mui-datatables"
 import axios from "axios"
 import MenuAppBar from "./components/MenuAppBar"
+import { css } from "@emotion/core"
+import GridLoader from "react-spinners/GridLoader"
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`
 
 function App() {
   const [NewProductObject, setNewProductObject] = useState({})
@@ -124,15 +132,17 @@ function App() {
   return (
     <>
       <MenuAppBar />
+
       <div className="container">
         {/* Feature Description of the app with relevant links for code */}
 
         <p className="desc-para">
-          CRUD Assignment with Listing all products, Sorting each feild by
-          clicking on header, Filtering the feilds dynamically and reset,
-          Search, Download CSV, Pagination and Rows per page setting, Multiple
-          products select with batch delete and fetching data from mock backend
-          (
+          CRUD Assignment with Listing all products, Responsive Design, Sorting
+          each feild by clicking on header, Filtering the feilds dynamically and
+          reset, Search, Download CSV, Pagination and Rows per page setting,
+          Multiple products select with batch delete and fetching data from mock
+          backend
+          <br />(
           <a
             href="https://github.com/kiranFullStack/target-backend"
             target="_blank"
@@ -159,12 +169,22 @@ function App() {
 
         {/* Modal to add products */}
         <SimpleModal setNewProductObject={setNewProductObject} />
-        <MUIDataTable
-          title={"Target Product List"}
-          data={data}
-          columns={columns}
-          options={options}
-        />
+
+        {data.length === 0 ? (
+          <GridLoader
+            css={override}
+            size={80}
+            color={"#123abc"}
+            loading="true"
+          />
+        ) : (
+          <MUIDataTable
+            title={"Target Product List"}
+            data={data}
+            columns={columns}
+            options={options}
+          />
+        )}
       </div>
 
       {/* Footer */}
