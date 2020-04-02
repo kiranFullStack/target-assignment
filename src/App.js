@@ -189,7 +189,14 @@ function App() {
 
       {/* Footer */}
       <span className="footer-info">
-        Made by Kiran - <a href="www.kiranfullstack.com">kiranfullstack.com</a>
+        Made by Kiran -{" "}
+        <a
+          href="https://kiranfullstack.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          kiranfullstack.com
+        </a>
       </span>
     </>
   )

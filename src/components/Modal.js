@@ -68,7 +68,6 @@ export default function SimpleModal({ setNewProductObject }) {
     <div style={modalStyle} className={classes.paper}>
       <h2 className="simple-modal-title">Add your products</h2>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="row"></div>
         <div className="row">
           <label className="column">Product Name</label>
           <input
@@ -96,7 +95,7 @@ export default function SimpleModal({ setNewProductObject }) {
         <div className="row">
           <label className="column">Is Active?</label>
           <input
-            className="column"
+            className="column checkboxCustom"
             required
             type="checkbox"
             onChange={e => {
