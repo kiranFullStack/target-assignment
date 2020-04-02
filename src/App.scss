@@ -1,30 +1,4 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span,
-td,
-tr,
-th,
-*,
-p {
-  font-family: "Sen", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-}
-
-h2 {
-  font-family: "Sen", sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-}
-
-h6 {
-  font-family: "Sen", sans-serif !important;
-  font-weight: 500 !important;
-}
+@import "./assets/global";
 
 .container {
   padding: 30px 78px;
@@ -48,6 +22,13 @@ h6 {
   padding: 50px 78px;
 }
 
+// giving any string in class name css advanced
+
+div[class^="makeStyles-paper"],
+div[class*=" makeStyles-paper"] {
+  width: 680px;
+}
+
 .form {
   input {
     margin: 10px 0;
@@ -61,6 +42,19 @@ h6 {
     text-align: left;
     padding: 0.5em 1.5em 0.5em 0;
   }
+
+  .checkboxCustom {
+    width: 680px !important;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .column {
+    flex: 50%;
+    padding: 10px;
+  }
 }
 
 .submit-cnt {
@@ -71,17 +65,4 @@ h6 {
 
 .simple-modal-title {
   text-align: center;
-}
-
-.makeStyles-paper-98 {
-  width: 560px !important;
-}
-
-.row {
-  display: flex;
-}
-
-.column {
-  flex: 50%;
-  padding: 10px;
 }
